@@ -10,16 +10,16 @@ The general outline of this project and timeline is as follows:
     have a local database 
 
 SQL Database with the following starting fields:
-``` markdown
 
+``` markdown
 protein_breakdown(__protein_breakdown_id__, histidine, isoleucine, leucine, lysine, methionine, phenylalanine, threonine, tryptophan, valine) // in terms of g per 100g, yeah this will mostly be in mgs, but im commiting to g/100g
 Ingredient(__ingredient_id__, name, calories, protein, fat, fiber, **fk(protein_breakdown)**) // everying g/100g
 needed_ingredients(__recipe_id__, __recipe_id__, mass, **count**) **key=__recipe_id__,__recipe_id__** // mass in grams, count optional
 recipe(__recipe_id__, name, ingredients, recipe, owner) **fk(owner from user.user_id, ingredients from needed_ingredients)** // only owner can edit. ingredients are select * from needed_ingredients where recipe_id = recipe_id. recipe might be a txt file? might be a pointer to a markdown file? might json obj? who knows?
 user(__user_id__, __username__, password) **key=__user_id__** // for now it is just me, also I have not tought about how to secure this yet, again, I am the only user for a long long time, ill think about it later
 user_ingredient(__user_ingredient_id__, user_id, bought, expires, mass, **count**) **fk(user_id from user)** // count optional, bought and expires are DATE
-
 ```
+
 below is a stream of consiousness, some good stuff, to in the brainstorm zone to edit
     Storage() // I have two fridges and freezers. I dont know if this one would be one that sticks. It could easily fall out of sync and its something that I would not really care about. I think I will narrow it down to just fridge, freezer, pantry. soemthing that i have to consider is the need for spices. If for refilling, that is something that I am typically on top of, but If i dont have something, I dont have it. there are also a few spice blends that I addore, but I have to make it myself because my ratio is just that good. 
     // storage is essentailly going to be just a list of ingredients, with speial quantites expiry dates. I think it is still vital to tell if it is frozen. that addes a few hours if the user does not take it out beforehand
