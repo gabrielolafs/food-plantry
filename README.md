@@ -12,10 +12,10 @@ The general outline of this project and timeline is as follows:
 SQL Database with the following starting fields:
 
 ``` markdown
-protein_breakdown(__protein_breakdown_id__, histidine, isoleucine, leucine, lysine, methionine, phenylalanine, threonine, tryptophan, valine) // in terms of g per 100g, yeah this will mostly be in mgs, but im commiting to g/100g
-Ingredient(__ingredient_id__, name, calories, protein, fat, fiber, **fk(protein_breakdown)**) // everying g/100g
-needed_ingredients(__recipe_id__, __recipe_id__, mass, **count**) **key=__recipe_id__,__recipe_id__** // mass in grams, count optional
-recipe(__recipe_id__, name, ingredients, recipe, owner) **fk(owner from user.user_id, ingredients from needed_ingredients)** // only owner can edit. ingredients are select * from needed_ingredients where recipe_id = recipe_id. recipe might be a txt file? might be a pointer to a markdown file? might json obj? who knows?
+protein_breakdown(__protein_breakdown_id__, histidine, isoleucine, leucine, lysine, methionine, phenylalanine, threonine, tryptophan, valine) // in terms of g per 100g, yeah this will mostly be in mgs, but im commiting to g/100g. deal with the floats.
+ingredient(__ingredient_id__, name, calories, protein, fat, fiber, protein_breakdown_id) **fk(protein_breakdown_id from protein_breakdown)**// everying g/100g
+needed_ingredient(__needed_ingredient__, __recipe_id__, mass, **count**) **key=__recipe_id__,__recipe_id__** // mass in grams, count optional. only owner can edit - figure that our from recipe(recipe_id).
+recipe(__recipe_id__, name, recipe, owner) **fk(owner from user.user_id)** // only owner can edit. ingredients are select name,mass,count from needed_ingredients where recipe_id = recipe_id. recipe might be a txt file? might be a pointer to a markdown file? might json obj? who knows?
 user(__user_id__, __username__, password) **key=__user_id__** // for now it is just me, also I have not tought about how to secure this yet, again, I am the only user for a long long time, ill think about it later
 user_ingredient(__user_ingredient_id__, user_id, bought, expires, mass, **count**) **fk(user_id from user)** // count optional, bought and expires are DATE
 ```
