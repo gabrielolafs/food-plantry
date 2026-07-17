@@ -1,1 +1,23 @@
 first commit
+
+So here is the plan:
+this is going to be a relitivly easy and simple frontend, and the more impressive (and cool) part about this will be the backend
+ultimatly I want to have this database in kube cluster that I have been working on. I would really like to be working on that rightaway, but as a am currently no where close to those computers, I can not yets really get it working the way I want it to be, and I cant really ask my mom to fill in for me.
+
+The general outline of this project and timeline is as follows:
+    build very basic frontend
+    outline the database and the feilds I want
+    have a local database 
+
+SQL Database with the following starting fields:
+    Storage() // I have two fridges and freezers. I dont know if this one would be one that sticks. It could easily fall out of sync and its something that I would not really care about. I think I will narrow it down to just fridge, freezer, pantry. soemthing that i have to consider is the need for spices. If for refilling, that is something that I am typically on top of, but If i dont have something, I dont have it. there are also a few spice blends that I addore, but I have to make it myself because my ratio is just that good. 
+    Garden()
+    Recipe(__recipe_id__) // this will have to be a lot of guess work. I would like to have all of this be super acurate, but i know myself. I cant follow a recipe if it means not ruining several meals. This will have a lot of informtation so that I will be able to gleen general information
+    // I think this feild kinda breaks the idea of sql, but i still want things to be relational. I am imagining something like markdown / obsidian cause I want to be able to reference something inside of a recipe, but not have it be locked 
+    Ingredient(__ngredient_id__, name, cal, protein, fat, **fk(protein_breakdown)**) // this is going to be immutable (for non admin). includes guesstimates of the macro breakdown - not in a ton of detail, but enough to get the basics. this, like a proper country's nutrition facts, will list the contents per 100 grams. Now how much of a nerd do I want to be about this? Massive. Proteins require all 9 essential amino acids. 
+    Protein_Breakdown(__protein_breakdown_id___, histidine, isoleucine, leucine, lysine, methionine, phenylalanine, threonine, tryptophan, valine) // this is important information when it comes to replacing protein sources from meat (which is almost always a complete protein -collagen, way too many people suppliment this thinking they are benifiting protein muscle synthosis)
+    
+    // expire date if it is included, otherwise it will guess off the the purchase date and the type of food that it is (hard, genuinly might have to have to hit an LLM for this, makes things a lot easier than manually going about this. I want to restric AI in this project as much as possible, if I do go this route, I will make an api for a local LLM). 
+    //Weight will be in grams. None of this pounding ounches sillies
+
+// A big problem that I am already seeing as a potential problem is that database falling out of sync. I think that will be something that I look into if i end up using this project a lot. I have a lot of ideas on this one, like having a camera that guesses, or a barcode scanner (this one i think could be really cool, and work really well with a database like this. plus an esp32 board on something like that would be great for wifi connection and just hitting the database). and a scale that would be able to plug into it so that I could get some decent guesses at the weights of items - not 100% accurate with the packaging, but I can garentee it would be better than an eyeball. 
